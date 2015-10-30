@@ -13,7 +13,7 @@ def main():
 
     print(sys.argv)
     if len(sys.argv) == 1:
-        print('Hier Todos anzeigen')
+        todolist.listall(todos)
     elif sys.argv[1] == 'add':
         print('Let me add this.')
         if len(sys.argv) < 4:
