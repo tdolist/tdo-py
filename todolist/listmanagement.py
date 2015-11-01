@@ -3,6 +3,9 @@ def add(todolist, todoid, todoname, category='all'):
         print('There is no todo list with the name {name}.'
               .format(name=category))
         return todolist, False
+    elif todoname == '':
+        print('You definitely should name your todo!')
+        return todolist, False
 
     print('Adding {nam} to category \'{cat}\'.'.format(nam=todoname,
                                                        cat=category))
@@ -46,8 +49,9 @@ def addlist(todolist, new_category):
 
 
 def dellist(tasklist, listname, get_undone, get_done):
-
-    if listname not in tasklist:
+    if listname == 'all':
+        print('You may not delete the default list.')
+    elif listname not in tasklist:
         print('There is no list with the name "{name}"!'.format(name=listname))
         return tasklist, False
     else:
@@ -60,6 +64,22 @@ Are you sure you want to delete it? (yes/no) '.format(
                 done=get_done(tasklist[listname])))
         if answer == 'yes':
             del tasklist[listname]
+            print('List deleted.')
             return tasklist, True
         else:
             return tasklist, False
+
+
+def clean(todolist, cat=''):
+    deleted = 0
+    if cat == '':
+        for category in todolist:
+            todolist[category] = {task_id: todolist[category][task_id] for task_id in todolist[category] if not todolist[category][task_id][1]}
+        return todolist, True
+    else:
+        if cat not in todolist.keys():
+            print('This list does not exist.')
+            return todolist, False
+        else:
+            todolist[cat] = {task_id: todolist[cat][task_id] for task_id in todolist[cat] if not todolist[cat][task_id][1]}
+            return todolist, True

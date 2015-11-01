@@ -52,6 +52,16 @@ def main():
 
             if ret_val[1]:
                 todolist.save(ret_val[0])
+    elif sys.argv[1] == 'clean':
+        if len(sys.argv) < 3:
+            # clean all lists
+            ret_val = todolist.clean(todos)
+        else:
+            # only clean a single list
+            ret_val = todolist.clean(todos, sys.argv[2])
+
+        if ret_val[1]:
+            todolist.save(ret_val[0])
     elif sys.argv[1] == 'lists':
         todolist.listlists(todos)
     elif sys.argv[1] == 'help':
