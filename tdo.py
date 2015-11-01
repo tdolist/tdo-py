@@ -15,6 +15,8 @@ def main():
 
     print(sys.argv)
     if len(sys.argv) == 1:
+        todolist.listundone(todos)
+    elif sys.argv[1] == 'all':
         todolist.listall(todos)
     elif sys.argv[1] == 'add':
         print('Let me add this...')
@@ -26,10 +28,32 @@ def main():
             todolist.save(ret_val[0])
             todolist.savesettings(ret_val[2])
     elif sys.argv[1] == 'done':
-        ret_val = todolist.done(todos, sys.argv[2])
+        if len(sys.argv) < 3:
+            print('Please enter a task ID!')
+        else:
+            ret_val = todolist.done(todos, sys.argv[2])
 
-        if ret_val[1]:
-            todolist.save(ret_val[0])
+            if ret_val[1]:
+                todolist.save(ret_val[0])
+    elif sys.argv[1] == 'newlist':
+        if len(sys.argv) < 3:
+            print('Please enter a name for your new list!')
+        else:
+            ret_val = todolist.addlist(todos, sys.argv[2])
+
+            if ret_val[1]:
+                todolist.save(ret_val[0])
+    elif sys.argv[1] == 'remove':
+        if len(sys.argv) < 3:
+            print('Please enter a list that should be deleted!')
+        else:
+            ret_val = todolist.dellist(todos, sys.argv[2], todolist.get_undone,
+                                       todolist.get_done)
+
+            if ret_val[1]:
+                todolist.save(ret_val[0])
+    elif sys.argv[1] == 'lists':
+        todolist.listlists(todos)
     elif sys.argv[1] == 'help':
         todolist.help()
     else:
