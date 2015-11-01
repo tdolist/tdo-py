@@ -7,6 +7,7 @@ def listall(todolist):
             else:
                 done = ' '
 
-            print('  [{done}] {name}'.format(done=done,
-                                             name=todolist[key][task_id][0]))
+            print('  [{done}] {num} | {name}'
+                  .format(done=done, num=task_id,
+                          name=todolist[key][task_id][0]))
     print('\n', end='')
