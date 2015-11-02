@@ -1,6 +1,6 @@
 def listall(todolist):
     for key in todolist:
-        print('\n## {name}\n'.format(name=key))
+        print('\n## {name}'.format(name=key))
         for task_id in todolist[key]:
             if todolist[key][task_id][1]:
                 done = 'x'
@@ -15,7 +15,7 @@ def listall(todolist):
 
 def listundone(todolist):
     for key in todolist:
-        print('\n## {name}\n'.format(name=key))
+        print('\n## {name}'.format(name=key))
         for task_id in todolist[key]:
             if not todolist[key][task_id][1]:
                 print('  [ ] {num} | {name}'

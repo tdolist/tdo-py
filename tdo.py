@@ -8,12 +8,17 @@ todos = {}
 globalid = 0
 
 
+def displayhelp():
+    with open('todolist/help', 'r') as helpfile:
+        print(helpfile.read())
+
+
 def main():
     global todos
     todos = todolist.load()
     globalid = todolist.getsettings()
 
-    print(sys.argv)
+    # print(sys.argv)
     if len(sys.argv) == 1:
         todolist.listundone(todos)
     elif sys.argv[1] == 'all':
@@ -65,9 +70,9 @@ def main():
     elif sys.argv[1] == 'lists':
         todolist.listlists(todos)
     elif sys.argv[1] == 'help':
-        todolist.help()
+        displayhelp()
     else:
-        todolist.help()
+        displayhelp()
 
 
 if __name__ == '__main__':
