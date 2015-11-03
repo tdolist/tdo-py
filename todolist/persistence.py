@@ -1,7 +1,9 @@
 import json
+import os
 
-jsonfile = '/Users/Felix/.tdo/list.json'
-settingsfile = '/Users/Felix/.tdo/settings.json'
+home = os.environ['HOME']
+jsonfile = '{home}/.tdo/list.json'.format(home=home)
+settingsfile = '{home}/.tdo/settings.json'.format(home=home)
 
 
 def save(todolist):
