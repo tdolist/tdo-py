@@ -1,4 +1,4 @@
-def add(todolist, todoid, todoname, category='all'):
+def add(todolist, todoid, todoname, category='default'):
     if category not in todolist.keys():
         print('There is no todo list with the name {name}.'
               .format(name=category))
@@ -49,7 +49,7 @@ def addlist(todolist, new_category):
 
 
 def dellist(tasklist, listname, get_undone, get_done):
-    if listname == 'all':
+    if listname == 'default':
         print('You may not delete the default list.')
     elif listname not in tasklist:
         print('There is no list with the name "{name}"!'.format(name=listname))
@@ -83,3 +83,26 @@ def clean(todolist, cat=''):
         else:
             todolist[cat] = {task_id: todolist[cat][task_id] for task_id in todolist[cat] if not todolist[cat][task_id][1]}
             return todolist, True
+
+
+def reset():
+    import os
+    import json
+
+    answer = input('Are you sure you want to reset all todo lists? (yes/no) ')
+    if answer == 'yes':
+        filename = os.environ['HOME'] + '/.tdo/list.json'
+        settingsname = os.environ['HOME'] + '/.tdo/settings.json'
+
+        with open(filename, 'w') as f:
+            json.dump({'default': {}}, f, indent=4)
+
+        with open(settingsname, 'w') as f:
+            globalid = 1
+            json.dump(globalid, f, indent=4)
+
+        print('Alright, your todo lists have been cleared.')
+    elif answer == 'no':
+        print('Okay, let\'s keep your lists for a while.')
+    else:
+        print('Please write "yes" or "no".')

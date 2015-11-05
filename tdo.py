@@ -18,10 +18,9 @@ def main(argv):
     todos = todolist.load()
     globalid = todolist.getsettings()
 
-    # print(argv)
     if len(argv) == 1:
         todolist.listundone(todos)
-    elif argv[1] == 'all':
+    elif argv[1] == 'default':
         todolist.listall(todos)
     elif argv[1] == 'add':
         print('Let me add this...')
@@ -67,6 +66,8 @@ def main(argv):
 
         if ret_val[1]:
             todolist.save(ret_val[0])
+    elif argv[1] == 'reset':
+        todolist.reset()
     elif argv[1] == 'lists':
         todolist.listlists(todos)
     elif argv[1] == 'help':
