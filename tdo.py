@@ -19,9 +19,9 @@ def main(argv):
     globalid = todolist.getsettings()
 
     if len(argv) == 1:
-        todolist.listundone(todos)
-    elif argv[1] == 'default':
-        todolist.listall(todos)
+        todolist.listundone(todos, len(str(globalid - 1)))
+    elif argv[1] == 'all':
+        todolist.listall(todos, len(str(globalid - 1)))
     elif argv[1] == 'add':
         print('Let me add this...')
         if len(argv) < 4:

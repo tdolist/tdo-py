@@ -1,4 +1,4 @@
-def listall(todolist):
+def listall(todolist, num_len):
     for key in todolist:
         print('\n## {name}'.format(name=key))
         for task_id in todolist[key]:
@@ -8,20 +8,24 @@ def listall(todolist):
                 done = ' '
 
             print('  [{done}] {num} | {name}'
-                  .format(done=done, num=task_id,
+                  .format(done=done, num=print_id(num_len, task_id),
                           name=todolist[key][task_id][0]))
     print('\n', end='')
 
 
-def listundone(todolist):
+def listundone(todolist, num_len):
     for key in todolist:
         print('\n## {name}'.format(name=key))
         for task_id in todolist[key]:
             if not todolist[key][task_id][1]:
                 print('  [ ] {num} | {name}'
-                      .format(num=task_id,
+                      .format(num=print_id(num_len, task_id),
                               name=todolist[key][task_id][0]))
     print('\n', end='')
+
+
+def print_id(num_len, task_id):
+    return ' ' * (num_len - len(task_id)) + task_id
 
 
 def listlists(todolist):
