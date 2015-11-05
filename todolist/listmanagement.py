@@ -7,10 +7,9 @@ def add(todolist, todoid, todoname, category='default'):
         print('You definitely should name your todo!')
         return todolist, False
 
-    print('Adding {nam} to category \'{cat}\'.'.format(nam=todoname,
-                                                       cat=category))
+    print('Adding "{nam}" to category \'{cat}\'.'.format(nam=todoname,
+                                                         cat=category))
     todolist[category][todoid] = [todoname, False]
-    print(todolist)
     todoid += 1
     return todolist, True, todoid
 

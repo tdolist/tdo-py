@@ -23,7 +23,6 @@ def main(argv):
     elif argv[1] == 'all':
         todolist.listall(todos, len(str(globalid - 1)))
     elif argv[1] == 'add':
-        print('Let me add this...')
         if len(argv) < 4:
             ret_val = todolist.add(todos, globalid, argv[2])
         else:
