@@ -12,8 +12,15 @@ def save(todolist):
 
 
 def load():
-    with open(jsonfile, 'r') as backupfile:
-        return json.load(backupfile)
+    try:
+        with open(jsonfile, 'r') as backupfile:
+            return json.load(backupfile)
+    except FileNotFoundError:
+        os.makedirs(os.path.dirname(jsonfile), exist_ok=True)
+        initdict = {'all': {}}
+        with open(jsonfile, 'w') as f:
+            json.dump(initdict, f)
+        return initdict
 
 
 def savesettings(globalid):
@@ -22,5 +29,12 @@ def savesettings(globalid):
 
 
 def getsettings():
-    with open(settingsfile, 'r') as settings:
-        return json.load(settings)
+    try:
+        with open(settingsfile, 'r') as settings:
+            return json.load(settings)
+    except FileNotFoundError:
+        os.makedirs(os.path.dirname(settingsfile), exist_ok=True)
+        with open(settingsfile, 'w') as f:
+            globalid = 1
+            json.dump(globalid, f, indent=4)
+            return globalid
