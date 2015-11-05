@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-import todolist
+from . import todolist
 
 
 todos = {}
@@ -13,7 +13,7 @@ def displayhelp():
         print(helpfile.read())
 
 
-def main(argv):
+def main(argv=sys.argv):
     global todos
     todos = todolist.load()
     globalid = todolist.getsettings()
