@@ -1,11 +1,22 @@
 def add(todolist, todoid, todoname, category='default'):
+    '''
+    Adds a new item to a todo list.
+    Takes:
+        - the todolist dict
+        - the next free todo-ID
+        - the name of the todo
+        - a category (this is optional)
+    Returns:
+        the (updated) todolist dict, False for no changes/True for changes &
+        the next free ID
+    '''
     if category not in todolist.keys():
         print('There is no todo list with the name {name}.'
               .format(name=category))
-        return todolist, False
+        return todolist, False, todoid
     elif todoname == '':
         print('You definitely should name your todo!')
-        return todolist, False
+        return todolist, False, todoid
 
     print('Adding "{nam}" to category \'{cat}\'.'.format(nam=todoname,
                                                          cat=category))
@@ -15,6 +26,14 @@ def add(todolist, todoid, todoname, category='default'):
 
 
 def done(todolist, task_id):
+    '''
+    Marks an item as done.
+    Takes:
+        - the todolist dict
+        - the task id that should be marked as done
+    Returns:
+        the (updated) todolist dict, False for no changes/True for changes
+    '''
     changed = False
     found = False
     for category in todolist:
@@ -39,6 +58,14 @@ def done(todolist, task_id):
 
 
 def addlist(todolist, new_category):
+    '''
+    Adds a new todo list.
+    Takes:
+        - the todolist dict
+        - the name of the new category
+    Returns:
+        the (updated) todolist dict, False for no changes/True for changes
+    '''
     if new_category in todolist.keys():
         print('This list already exists!')
         return todolist, False
@@ -48,6 +75,16 @@ def addlist(todolist, new_category):
 
 
 def dellist(tasklist, listname, get_undone, get_done):
+    '''
+    Deletes a todo list. Prompts the user to confirm his actions.
+    Takes:
+        - the todolist dict
+        - the name of the todo list
+        - the function to get the number of undone tasks
+        - the function to get the number of done tasks
+    Returns:
+        the (updated) todolist dict, False for no changes/True for changes
+    '''
     if listname == 'default':
         print('You may not delete the default list.')
     elif listname not in tasklist:
@@ -70,6 +107,15 @@ Are you sure you want to delete it? (yes/no) '.format(
 
 
 def clean(todolist, cat=''):
+    '''
+    Removes every todo from all lists/one single list, that has been marked as
+    "done".
+    Takes:
+        - the todolist dict
+        - (optional: a category)
+    Returns:
+        the (cleaned) todolist dict, False for no changes/True for changes
+    '''
     deleted = 0
     if cat == '':
         for category in todolist:
@@ -85,6 +131,13 @@ def clean(todolist, cat=''):
 
 
 def reset():
+    '''
+    Resets all data to presets. Prompts the user for confirmation.
+    Takes:
+        nothing
+    Returns:
+        nothing
+    '''
     import os
     import json
 
