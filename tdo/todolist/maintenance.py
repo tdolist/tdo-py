@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import shutil
 import subprocess
 import urllib.request
 from .persistence import home, jsonfile, settingsfile
@@ -38,15 +39,25 @@ def update():
     repo = 'tdo'
     output = subprocess.getoutput('curl -s https://api.github.com/repos/\
 {user}/{repo}/releases'.format(user=user, repo=repo))
-    linklist = re.search(r'"browser_download_url": "(https\:\/\/.*\.zip)"',
+    linklist = re.search(r'"zipball_url": "(https\:\/\/.*)"',
                          output)
     try:
         link = linklist.group(1)
-        with urllib.request.urlopen(link) as resp, open('download.zip', 'wb') as f:
+        with urllib.request.urlopen(link) as resp, open('dl.zip', 'wb') as f:
             data = resp.read()
             f.write(data)
         import zipfile
-        with zipfile.ZipFile('download.zip', "r") as z:
+        with zipfile.ZipFile('dl.zip', "r") as z:
             z.extractall(".")
+        os.remove('dl.zip')
+        newdir = '.'
+        for entry in os.listdir():
+            if re.match(r'Feliix42\-tdo\-.*', entry):
+                newdir = entry
+        os.chdir(newdir)
+        subprocess.call(['python3', './setup.py', 'install'])
+        os.chdir('..')
+        shutil.rmtree(newdir)
+
     except AttributeError:
         print('No release available')
