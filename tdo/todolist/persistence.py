@@ -34,7 +34,7 @@ def load():
             return json.load(backupfile)
     except FileNotFoundError:
         os.makedirs(os.path.dirname(jsonfile), exist_ok=True)
-        initdict = {'all': {}}
+        initdict = {'default': {}}
         with open(jsonfile, 'w') as f:
             json.dump(initdict, f)
         return initdict
