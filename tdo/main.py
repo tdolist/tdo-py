@@ -14,8 +14,7 @@ def displayhelp():
     '''
     Display the help page.
     '''
-    with open('todolist/help', 'r') as helpfile:
-        print(helpfile.read())
+    print(todolist.help)
 
 
 def main(argv=sys.argv):
