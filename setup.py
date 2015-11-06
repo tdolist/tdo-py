@@ -43,7 +43,8 @@ For a list of available commands use \'tdo help\'''')
 
 def uninstall():
     print('Uninstall tdo...')
-    subprocess.call(['python3', sys.argv[0], 'install', '--record', 'files.txt'])
+    subprocess.call(['python3', sys.argv[0], 'install', '--record',
+                    'files.txt'])
     filelist = []
     with open('files.txt') as files:
         filelist = files.readlines()
