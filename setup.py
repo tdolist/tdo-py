@@ -11,28 +11,38 @@ if version < (3, 4):
           ' ({}.{} detected).'.format(*version))
     sys.exit(-1)
 
-VERSION = 'none'
+VERSION = '1.0'
 
 
-def install():
-    setup(name='tdo',
-          version=VERSION,
-          description="A todo list tool for the terminal.",
-          author='Felix Wittwer',
-          license='MIT',
-          packages=find_packages(),
-          include_package_data=True,
-          zip_safe=False,
-          entry_points={'console_scripts': [
-              'tdo = tdo.main:main']})
-    filelist = ['{dir}/build'.format(dir=os.getcwd()),
-                '{dir}/dist'.format(dir=os.getcwd()),
-                '{dir}/tdo.egg-info'.format(dir=os.getcwd())]
-
+def install(mute=True):
+    if not mute:
+        print('Install tdo...')
+    with open(os.devnull, 'w') as devnull:
+        sys.stdout = devnull
+        sys.stderr = devnull
+        setup(name='tdo',
+              version=VERSION,
+              description="A todo list tool for the terminal.",
+              author='Felix Wittwer',
+              license='MIT',
+              packages=find_packages(),
+              include_package_data=True,
+              zip_safe=False,
+              entry_points={'console_scripts': [
+                  'tdo = tdo.main:main']})
+        filelist = ['{dir}/build'.format(dir=os.getcwd()),
+                    '{dir}/dist'.format(dir=os.getcwd()),
+                    '{dir}/tdo.egg-info'.format(dir=os.getcwd())]
+        sys.stdout = sys.__stdout__
+        sys.stderr = sys.__stderr__
     cleanup(filelist)
+    if not mute:
+        print('''Done. You can use it with \'tdo\'
+For a list of available commands use \'tdo help\'''')
 
 
 def uninstall():
+    print('Uninstall tdo...')
     subprocess.call([sys.argv[0], 'install', '--record', 'files.txt'])
     filelist = []
     with open('files.txt') as files:
@@ -46,6 +56,7 @@ def uninstall():
     filelist.append('{dir}/files.txt'.format(dir=os.getcwd()))
 
     cleanup(filelist)
+    print('Done.')
 
 
 def cleanup(filelist):
@@ -54,7 +65,18 @@ def cleanup(filelist):
 
 
 if __name__ == '__main__':
-    if sys.argv[1] == 'uninstall':
-        uninstall()
+    if len(sys.argv) > 1:
+        if sys.argv[1] == 'uninstall':
+            uninstall()
+        elif sys.argv[1] == 'install':
+            if len(sys.argv) == 2:
+                install(mute=False)
+            else:
+                install()
     else:
-        install()
+        command = ''
+        if len(sys.argv) > 1:
+            command = 'command \'{command}\' \
+not supported\n'.format(command=sys.argv[1])
+        print('''{command}usage: setup.py install
+   or: setup.py uninstall'''.format(command=command))
