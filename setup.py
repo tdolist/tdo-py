@@ -11,7 +11,7 @@ if version < (3, 4):
           ' ({}.{} detected).'.format(*version))
     sys.exit(-1)
 
-VERSION = '1.0'
+VERSION = '0.5'
 
 
 def install(mute=True):

@@ -92,6 +92,8 @@ def main(argv=sys.argv):
     elif argv[1] == 'help':
         # tdo help -- display help
         displayhelp()
+    elif argv[1] == 'update':
+        todolist.update()
     else:
         # something wrong? Help!
         displayhelp()
