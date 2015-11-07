@@ -41,11 +41,15 @@ def listundone(todolist, num_len):
         if len(todolist[key]) == 0:
             print('    No entries found.')
         else:
+            undone = False
             for task_id in todolist[key]:
                 if not todolist[key][task_id][1]:
+                    undone = True
                     print('  [ ] {num} | {name}'
                           .format(num=print_id(num_len, task_id),
                                   name=todolist[key][task_id][0]))
+            if not undone:
+                print('    No undone tasks.')
     print('\n', end='')
 
 
