@@ -7,7 +7,8 @@ def listall(todolist, num_len):
     Returns:
         nothing
     '''
-    for key in todolist:
+    keylist = sortdict(todolist)
+    for key in keylist:
         # print the category name
         print('## {name}'.format(name=key))
         if len(todolist[key]) == 0:
@@ -36,7 +37,8 @@ def listundone(todolist, num_len):
     Returns:
         nothing
     '''
-    for key in todolist:
+    keylist = sortdict(todolist)
+    for key in keylist:
         print('\n## {name}'.format(name=key))
         if len(todolist[key]) == 0:
             print('    No entries found.')
@@ -109,3 +111,12 @@ def get_done(single_list):
         if single_list[task_id][1]:
             done += 1
     return done
+
+
+def sortdict(todolist):
+    templist = sorted(todolist)
+    templist.remove('default')
+    ret_list = ['default']
+    for element in templist:
+        ret_list.append(element)
+    return ret_list
