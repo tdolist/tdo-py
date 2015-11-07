@@ -14,7 +14,8 @@ def listall(todolist, num_len):
         if len(todolist[key]) == 0:
             print('    No entries found.')
         else:
-            for task_id in todolist[key]:
+            idlist = sortdict(todolist[key], id=True)
+            for task_id in idlist:
                 if todolist[key][task_id][1]:
                     done = 'x'
                 else:
@@ -44,7 +45,8 @@ def listundone(todolist, num_len):
             print('    No entries found.')
         else:
             undone = False
-            for task_id in todolist[key]:
+            idlist = sortdict(todolist[key], id=True)
+            for task_id in idlist:
                 if not todolist[key][task_id][1]:
                     undone = True
                     print('  [ ] {num} | {name}'
@@ -113,10 +115,12 @@ def get_done(single_list):
     return done
 
 
-def sortdict(todolist):
+def sortdict(todolist, id=False):
     templist = sorted(todolist)
-    templist.remove('default')
-    ret_list = ['default']
+    ret_list = []
+    if not id:
+        templist.remove('default')
+        ret_list.append('default')
     for element in templist:
         ret_list.append(element)
     return ret_list
