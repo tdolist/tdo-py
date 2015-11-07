@@ -10,16 +10,19 @@ def listall(todolist, num_len):
     for key in todolist:
         # print the category name
         print('## {name}'.format(name=key))
-        for task_id in todolist[key]:
-            if todolist[key][task_id][1]:
-                done = 'x'
-            else:
-                done = ' '
+        if len(todolist[key]) == 0:
+            print('    No entries found.')
+        else:
+            for task_id in todolist[key]:
+                if todolist[key][task_id][1]:
+                    done = 'x'
+                else:
+                    done = ' '
 
-            # prints the todo
-            print('  [{done}] {num} | {name}'
-                  .format(done=done, num=print_id(num_len, task_id),
-                          name=todolist[key][task_id][0]))
+                # prints the todo
+                print('  [{done}] {num} | {name}'
+                      .format(done=done, num=print_id(num_len, task_id),
+                              name=todolist[key][task_id][0]))
         print('\n', end='')
     print('\n', end='')
 
@@ -35,11 +38,14 @@ def listundone(todolist, num_len):
     '''
     for key in todolist:
         print('\n## {name}'.format(name=key))
-        for task_id in todolist[key]:
-            if not todolist[key][task_id][1]:
-                print('  [ ] {num} | {name}'
-                      .format(num=print_id(num_len, task_id),
-                              name=todolist[key][task_id][0]))
+        if len(todolist[key]) == 0:
+            print('    No entries found.')
+        else:
+            for task_id in todolist[key]:
+                if not todolist[key][task_id][1]:
+                    print('  [ ] {num} | {name}'
+                          .format(num=print_id(num_len, task_id),
+                                  name=todolist[key][task_id][0]))
     print('\n', end='')
 
 

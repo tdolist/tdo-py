@@ -1,4 +1,4 @@
-help='''tdo -- A todo list tool for the terminal.
+help = '''tdo -- A todo list tool for the terminal.
 
 Available commands:
 tdo                     Lists all undone tasks, sorted by category.
@@ -11,4 +11,5 @@ tdo clean [list]        Removes all tasks that have been marked as done.
                         If you specify a list name, only this list is cleared.
 tdo lists               List all lists with a statistic of undone/done tasks.
 tdo help                Display this help.
-tdo reset               DANGER ZONE. Delete all your todos and todo lists.'''
+tdo reset               DANGER ZONE. Delete all your todos and todo lists.
+tdo update              Updates tdo to the latest release.'''
