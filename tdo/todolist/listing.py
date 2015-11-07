@@ -79,7 +79,7 @@ def listlists(todolist):
     '''
     print('You have the following todo lists:\n')
     for listname in todolist.keys():
-        print('    [{undone}|{done}] {name}'.format(
+        print('    [\033[91m{undone}\033[0m|\033[92m{done}\033[0m] {name}'.format(
             undone=get_undone(todolist[listname]),
             done=get_done(todolist[listname]), name=listname))
     print('\n', end='')
