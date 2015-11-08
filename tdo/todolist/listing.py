@@ -45,8 +45,10 @@ def listundone(todolist, num_len, settings):
     table = settings['table']
     tick = settings['tick']
     keylist = sortdict(todolist)
+    if table:
+        printhead(num_len)
     for key in keylist:
-        print('\n## {name}'.format(name=key))
+        printtitle(key, table, num_len)
         if len(todolist[key]) == 0:
             print('    No entries found.')
         else:
