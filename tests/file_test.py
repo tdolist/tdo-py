@@ -28,7 +28,7 @@ class FileTest(unittest.TestCase):
         fake_argv = ['../tdo.py', 'add', 'Test3']
         main(fake_argv)
 
-        self.assertEqual(todolist.getsettings(), 4,
+        self.assertEqual(todolist.getsettings()['globalid'], 4,
                          msg='The global todo ID incrementation is broken \
 (The settings file contains a wrong ID).')
         todos = todolist.load()
