@@ -35,7 +35,7 @@ def reset():
 
 def update():
     os.chdir(os.path.join(home + '/.tdo'))
-    user = 'Feliix42'
+    user = 'tdolist'
     repo = 'tdo'
     output = subprocess.getoutput('curl -s https://api.github.com/repos/\
 {user}/{repo}/releases'.format(user=user, repo=repo))
@@ -50,14 +50,15 @@ def update():
         with zipfile.ZipFile('dl.zip', "r") as z:
             z.extractall(".")
         os.remove('dl.zip')
-        newdir = '.'
+        newdir = ''
         for entry in os.listdir():
-            if re.match(r'Feliix42\-tdo\-.*', entry):
+            if re.match(r'{user}\-tdo\-.*'.format(user=user), entry):
                 newdir = entry
         os.chdir(newdir)
         subprocess.call(['python3', './setup.py', 'install'])
         os.chdir('..')
-        shutil.rmtree(newdir)
+        if newdir != ''
+            shutil.rmtree(newdir)
 
     except AttributeError:
         print('No release available')
