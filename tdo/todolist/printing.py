@@ -43,9 +43,11 @@ def printtask(num_len, task_id, name, table, tick, done=False):
         donestr = '[x]' if done else '[ ]'
 
     if table:
-        print(' {done} |{id} | {task}'.format(done=donestr,
-                                              id=printedId,
-                                              task=tasklist[0]))
+        space = (5 - num_len) if spaces == 0 else spaces
+        print(' {done} |{space}{id} | {task}'.format(done=donestr,
+                                                     space=' ' * space,
+                                                     id=printedId,
+                                                     task=tasklist[0]))
         if len(tasklist) > 1:
             for element in range(len(tasklist) - 1):
                 print('     |{idlen}| {task}'.format(idlen=' ' * (maxLen - 6),
