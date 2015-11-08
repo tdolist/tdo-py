@@ -23,8 +23,8 @@ def reset():
             json.dump({'default': {}}, f, indent=4)
 
         with open(settingsfile, 'w') as f:
-            globalid = 1
-            json.dump(globalid, f, indent=4)
+            settings = {'globalid': 1, 'table': False, 'tick': False}
+            json.dump(settings, f, indent=4)
 
         print('Alright, your todo lists have been cleared.')
     elif answer == 'no':

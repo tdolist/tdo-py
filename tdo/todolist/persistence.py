@@ -40,7 +40,7 @@ def load():
         return initdict
 
 
-def savesettings(globalid):
+def savesettings(settings):
     '''
     Dumps the todo list settings to the default JSON file.
     Takes:
@@ -48,8 +48,8 @@ def savesettings(globalid):
     Returns:
         nothing
     '''
-    with open(settingsfile, 'w') as settings:
-        json.dump(globalid, settings, indent=4)
+    with open(settingsfile, 'w') as settingsf:
+        json.dump(settings, settingsf, indent=4)
 
 
 def getsettings():
@@ -67,6 +67,6 @@ def getsettings():
     except FileNotFoundError:
         os.makedirs(os.path.dirname(settingsfile), exist_ok=True)
         with open(settingsfile, 'w') as f:
-            globalid = 1
-            json.dump(globalid, f, indent=4)
-            return globalid
+            settings = {'globalid': 1, 'table': False, 'tick': False}
+            json.dump(settings, f, indent=4)
+            return settings

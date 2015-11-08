@@ -21,14 +21,20 @@ def main(argv=sys.argv):
     # initialize the program by loading settings and
     global todos
     todos = todolist.load()
-    globalid = todolist.getsettings()
+    settings = todolist.getsettings()
+    globalid = 0
+    try:
+        globalid = settings['globalid']
+    except TypeError as e:
+        globalid = settings
+        settings = {'globalid': globalid, 'table': False, 'tick': False}
 
     if len(argv) == 1:
         # tdo -- list undone todos
-        todolist.listundone(todos, len(str(globalid - 1)))
+        todolist.listundone(todos, len(str(globalid - 1)), settings)
     elif argv[1] == 'all':
         # tdo all -- list ALL todos
-        todolist.listall(todos, len(str(globalid - 1)))
+        todolist.listall(todos, len(str(globalid - 1)), settings)
     elif argv[1] == 'add':
         # tdo add "itemname" [list]-- add a new item
         if len(argv) < 4:
@@ -41,7 +47,8 @@ def main(argv=sys.argv):
         if ret_val[1]:
             # if there were changes, save them
             todolist.save(ret_val[0])
-            todolist.savesettings(ret_val[2])
+            settings['globalid'] = ret_val[2]
+            todolist.savesettings(settings)
     elif argv[1] == 'done':
         # tdo done x -- mark task no. x as done
         if len(argv) < 3:

@@ -1,43 +1,49 @@
-def listall(todolist, num_len):
+from .printing import *
+
+
+def listall(todolist, num_len, settings):
     '''
     Lists all todos from all categories, even the ones marked as "done".
     Takes:
         - the todolist dict
         - the length of the longest Todo-ID (for formatting)
+        - the settings
     Returns:
         nothing
     '''
+    table = settings['table']
+    tick = settings['tick']
+    if table:
+        printhead(num_len)
     keylist = sortdict(todolist)
     for key in keylist:
         # print the category name
-        print('## {name}'.format(name=key))
+        printtitle(key, table, num_len)
         if len(todolist[key]) == 0:
             print('    No entries found.')
         else:
             idlist = sortdict(todolist[key], id=True)
             for task_id in idlist:
-                if todolist[key][task_id][1]:
-                    done = 'x'
-                else:
-                    done = ' '
-
                 # prints the todo
-                print('  [{done}] {num} | {name}'
-                      .format(done=done, num=print_id(num_len, task_id),
-                              name=todolist[key][task_id][0]))
+                printtask(done=todolist[key][task_id][1], num_len=num_len,
+                          task_id=task_id, name=todolist[
+                          key][task_id][0], table=table, tick=tick)
         print('\n', end='')
     print('\n', end='')
 
 
-def listundone(todolist, num_len):
+def listundone(todolist, num_len, settings):
     '''
     Lists all undone todos by category.
     Takes:
         - the todolist dict
         - the length of the longest Todo-ID (for formatting)
+        - the settings
     Returns:
         nothing
     '''
+    table = settings['table']
+    tick = settings['tick']
     keylist = sortdict(todolist)
     for key in keylist:
         print('\n## {name}'.format(name=key))
@@ -49,24 +55,12 @@ def listundone(todolist, num_len):
             for task_id in idlist:
                 if not todolist[key][task_id][1]:
                     undone = True
-                    print('  [ ] {num} | {name}'
-                          .format(num=print_id(num_len, task_id),
-                                  name=todolist[key][task_id][0]))
+                    printtask(num_len=num_len, task_id=task_id,
+                              name=todolist[key][task_id][0], table=table,
+                              tick=tick)
             if not undone:
                 print('    No undone tasks.')
     print('\n', end='')
-
-
-def print_id(num_len, task_id):
-    '''
-    Calculates how much spaces need to be added for formatting purposes.
-    Takes:
-        - the length of the longest Todo-ID (for formatting)
-        - the specific task id (as String!)
-    Returns:
-        a formatted String like "   2".
-    '''
-    return ' ' * (num_len - len(task_id)) + task_id
 
 
 def listlists(todolist):
