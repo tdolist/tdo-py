@@ -57,7 +57,7 @@ def update():
         os.chdir(newdir)
         subprocess.call(['python3', './setup.py', 'install'])
         os.chdir('..')
-        if newdir != ''
+        if newdir != '':
             shutil.rmtree(newdir)
 
     except AttributeError:
