@@ -50,14 +50,14 @@ def update():
         with zipfile.ZipFile('dl.zip', "r") as z:
             z.extractall(".")
         os.remove('dl.zip')
-        newdir = ''
+        newdir = None
         for entry in os.listdir():
             if re.match(r'{user}\-tdo\-.*'.format(user=user), entry):
                 newdir = entry
         os.chdir(newdir)
         subprocess.call(['python3', './setup.py', 'install'])
         os.chdir('..')
-        if newdir != '':
+        if newdir is not None:
             shutil.rmtree(newdir)
 
     except AttributeError:
