@@ -95,6 +95,12 @@ def main(argv=sys.argv):
     elif argv[1] == 'lists':
         # tdo lists -- list all todo lists
         todolist.listlists(todos)
+    elif argv[1] == 'export':
+        # tdo export filename -- export the todolist as markdown file
+        if len(argv) < 3:
+            print('You should provide a export filepath!')
+        else:
+            todolist.mdexport(todos, argv[2])
     elif argv[1] == 'help':
         # tdo help -- display help
         displayhelp()
