@@ -112,11 +112,13 @@ def get_done(single_list):
 
 
 def sortdict(todolist, id=False):
+    if id:
+        todolist = [int(x) for x in todolist]
     templist = sorted(todolist)
     ret_list = []
     if not id:
         templist.remove('default')
         ret_list.append('default')
     for element in templist:
-        ret_list.append(element)
+        ret_list.append(str(element))
     return ret_list
