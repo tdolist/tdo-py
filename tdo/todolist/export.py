@@ -38,10 +38,7 @@ def mdexport(todolist, exportfile):
                     for todo_id in idlist:
                         exportstring += addtoexport(todolist[key][todo_id])
                     exportstring += '\n'
-                print(exportstring)
                 print('Done.')
-
-
 
 
 def addtoexport(todolist):
