@@ -1,3 +1,6 @@
+from .listing import sortdict
+
+
 def mdexport(todolist, exportfile):
     import os.path
     path = exportfile.rsplit('/', 1)[0]
@@ -7,10 +10,11 @@ def mdexport(todolist, exportfile):
         print('Exporting your todos to "{filename}"...'.format(
             filename=exportfile))
         exportstring = '# Your todos:\n\n'
-        for key in todolist:
-            # TODO add sorting
+        keylist = sortdict(todolist)
+        for key in keylist:
             exportstring += '## {listname}\n\n'.format(listname=key)
-            for todo_id in todolist[key]:
+            idlist = sortdict(todolist[key], id=True)
+            for todo_id in idlist:
                 if todolist[key][todo_id][1]:
                     done = 'x'
                 else:
