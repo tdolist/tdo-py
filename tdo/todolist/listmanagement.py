@@ -119,12 +119,16 @@ def clean(todolist, cat=''):
     deleted = 0
     if cat == '':
         for category in todolist:
-            todolist[category] = {task_id: todolist[category][task_id] for task_id in todolist[category] if not todolist[category][task_id][1]}
+            todolist[category] = {task_id: todolist[category][
+                task_id] for task_id in todolist[category] if not todolist[
+                category][task_id][1]}
         return todolist, True
     else:
         if cat not in todolist.keys():
             print('This list does not exist.')
             return todolist, False
         else:
-            todolist[cat] = {task_id: todolist[cat][task_id] for task_id in todolist[cat] if not todolist[cat][task_id][1]}
+            todolist[cat] = {task_id: todolist[cat][task_id]
+                             for task_id in todolist[cat] if not todolist[cat][
+                             task_id][1]}
             return todolist, True
