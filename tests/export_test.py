@@ -33,7 +33,6 @@ class FileTest(unittest.TestCase):
 
     def test_alllists(self):
         fake_argv = ['../tdo.py', 'export', './test.md']
-        self.setUp()
         todos = todolist.load()
         todolist.mdexport(todos, fake_argv)
         shouldstr = '''# Your todos:
@@ -64,7 +63,6 @@ class FileTest(unittest.TestCase):
         self.assertEqual(shouldstr, isstr, msg='Can not export all lists.')
 
     def test_sinlgelist(self):
-        self.setUp()
         fake_argv = ['../tdo.py', 'export', './test.md', 'Testlist1']
         todos = todolist.load()
         todolist.mdexport(todos, fake_argv)
@@ -84,7 +82,6 @@ class FileTest(unittest.TestCase):
         self.assertEqual(shouldstr, isstr, msg='Can not export all lists.')
 
     def test_multilist(self):
-        self.setUp()
         fake_argv = ['../tdo.py', 'export', './test.md', 'Testlist1',
                      'Testlist2']
         todos = todolist.load()
