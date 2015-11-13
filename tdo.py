@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 import tdo
 import os
+import sys
 
 
 def run():
-    os.chdir('./tdo')
+    path = sys.argv[0].rsplit('/', 1)[0]
+    os.chdir('{path}/tdo'.format(path=path))
     tdo.main()
 
 
