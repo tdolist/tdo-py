@@ -1,7 +1,6 @@
 # tdo
 
-[![Build Status](https://travis-ci.org/tdolist/tdo.svg)](https://travis-ci.org/Feliix42/tdo)
-
+[![Build Status](https://travis-ci.org/tdolist/tdo.svg)](https://travis-ci.org/Feliix42/tdo)  
 
 A todo list tool for the terminal, written in Python
 
@@ -11,6 +10,10 @@ A todo list tool for the terminal, written in Python
 >$ git clone https://github.com/tdolist/tdo.git  
 $ cd tdo  
 $ ./setup.py install
+
+If you don't have pip installed you have to install it via sudo
+
+> sudo ./setup.py install
 
 ## Uninstall
 
