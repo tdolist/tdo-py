@@ -100,7 +100,7 @@ def main(argv=sys.argv):
         if len(argv) < 3:
             print('You should provide a export filepath!')
         else:
-            todolist.mdexport(todos, argv[2])
+            todolist.mdexport(todos)
     elif argv[1] == 'help':
         # tdo help -- display help
         displayhelp()

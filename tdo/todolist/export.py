@@ -2,16 +2,16 @@ import sys
 from .listing import sortdict
 
 
-def mdexport(todolist, exportfile):
+def mdexport(todolist, argv=sys.argv):
     import os.path
-    path = exportfile.rsplit('/', 1)[0]
+    path = argv[2].rsplit('/', 1)[0]
     if not os.path.isdir(path):
         print('The given output path does not exist!')
     else:
         exportstring = '# Your todos:\n\n'
-        if len(sys.argv) < 4:
+        if len(argv) < 4:
             print('Exporting your todos to "{filename}"...'.format(
-                filename=exportfile))
+                filename=argv[2]))
             keylist = sortdict(todolist)
             for key in keylist:
                 exportstring += '## {listname}\n\n'.format(listname=key)
@@ -19,11 +19,11 @@ def mdexport(todolist, exportfile):
                 for todo_id in idlist:
                     exportstring += addtoexport(todolist[key][todo_id])
                 exportstring += '\n'
-            with open(exportfile, 'w') as f:
+            with open(argv[2], 'w') as f:
                 f.write(exportstring)
             print('Done.')
         else:
-            keylist = sys.argv[3:]
+            keylist = argv[3:]
             notinlist = False
             for key in keylist:
                 if key not in todolist:
@@ -33,14 +33,14 @@ def mdexport(todolist, exportfile):
                 return
             else:
                 print('Exporting your todos to "{filename}"...'.format(
-                      filename=exportfile))
+                      filename=argv[2]))
                 for key in keylist:
                     exportstring += '## {listname}\n\n'.format(listname=key)
                     idlist = sortdict(todolist[key], id=True)
                     for todo_id in idlist:
                         exportstring += addtoexport(todolist[key][todo_id])
                     exportstring += '\n'
-                with open(exportfile, 'w') as f:
+                with open(argv[2], 'w') as f:
                     f.write(exportstring)
                 print('Done.')
 
