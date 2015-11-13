@@ -32,12 +32,16 @@ def mdexport(todolist, exportfile):
             if notinlist:
                 return
             else:
+                print('Exporting your todos to "{filename}"...'.format(
+                      filename=exportfile))
                 for key in keylist:
                     exportstring += '## {listname}\n\n'.format(listname=key)
                     idlist = sortdict(todolist[key], id=True)
                     for todo_id in idlist:
                         exportstring += addtoexport(todolist[key][todo_id])
                     exportstring += '\n'
+                with open(exportfile, 'w') as f:
+                    f.write(exportstring)
                 print('Done.')
 
 
