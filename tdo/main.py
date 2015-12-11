@@ -59,6 +59,16 @@ def main(argv=sys.argv):
             if ret_val[1]:
                 # if there were changes, save them
                 todolist.save(ret_val[0])
+    elif argv[1] == 'edit':
+        # tdo edit x - edit task no. x
+        if len(argv) < 3:
+            print('Please enter a task ID!')
+        else:
+            ret_val = todolist.edit(todos, argv[2])
+
+            if ret_val[1]:
+                # save changes, if there are any
+                todolist.save(ret_val[0])
     elif argv[1] == 'newlist':
         # tdo newlist "name" -- create list "name"
         if len(argv) < 3:

@@ -25,6 +25,28 @@ def add(todolist, todoid, todoname, category='default'):
     return todolist, True, todoid
 
 
+def edit(todolist, task_id):
+    found = False
+    changed = False
+    for category in todolist:
+        for item in todolist[category]:
+            if item == str(task_id):
+                found = True
+                print('Task #{num}: {content}'.format(
+                      num=task_id, content=todolist[category][task_id][0]))
+                inp = input("Enter your new task description \
+(leave blank for abort): ")
+                if inp != '':
+                    todolist[category][task_id][0] = inp
+                    changed = True
+
+    if not found:
+        print('There is no task with the ID {num}.'.format(num=task_id))
+        return todolist, False
+    else:
+        return todolist, changed
+
+
 def done(todolist, task_id):
     '''
     Marks an item as done.
@@ -51,10 +73,7 @@ def done(todolist, task_id):
         print('There is no task with the ID {num}.'.format(num=task_id))
         return todolist, False
     else:
-        if changed:
-            return todolist, True
-        else:
-            return todolist, False
+        return todolist, changed
 
 
 def addlist(todolist, new_category):
