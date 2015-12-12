@@ -1,6 +1,6 @@
 # tdo
 
-[![Build Status](https://travis-ci.org/tdolist/tdo.svg)](https://travis-ci.org/Feliix42/tdo)  
+[![Build Status](https://travis-ci.org/tdolist/tdo.svg?branch=master)](https://travis-ci.org/tdolist/tdo)
 
 A todo list tool for the terminal, written in Python
 
