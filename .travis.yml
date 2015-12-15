@@ -1,6 +1,11 @@
 language: python
 
-python: "3.5"
+python: "3.5.1"
+
+before_script:
+  - mkdir -p /home/travis/.tdo
+  - touch /home/travis/.tdo/list.json
+  - touch /home/travis/.tdo/settings.json
 
 script:
   - nosetests --version
