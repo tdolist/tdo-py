@@ -20,16 +20,21 @@ def add(todolist, todoid, todoname, category='default'):
         print('You definitely should name your todo!')
         return todolist, False, todoid
 
-    print('Adding "{nam}" to category \'{cat}\'.'.format(nam=todoname,
-                                                         cat=category))
-
+    print_cat = ''
     if category not in todolist.keys():
         for cat in todolist.keys():
             if category.lower() == cat.lower():
+                print_cat = cat
                 todolist[cat][todoid] = [todoname, False]
     else:
         todolist[category][todoid] = [todoname, False]
+        print_cat = category
+
+    print('Adding "{nam}" to category \'{cat}\'.'.format(nam=todoname,
+                                                         cat=print_cat))
+
     todoid += 1
+
     return todolist, True, todoid
 
 
