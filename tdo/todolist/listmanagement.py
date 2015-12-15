@@ -10,7 +10,9 @@ def add(todolist, todoid, todoname, category='default'):
         the (updated) todolist dict, False for no changes/True for changes &
         the next free ID
     '''
-    if category not in todolist.keys():
+    keylist = [key.lower() for key in todolist.keys()]
+
+    if category.lower() not in keylist:
         print('There is no todo list with the name {name}.'
               .format(name=category))
         return todolist, False, todoid
@@ -20,7 +22,13 @@ def add(todolist, todoid, todoname, category='default'):
 
     print('Adding "{nam}" to category \'{cat}\'.'.format(nam=todoname,
                                                          cat=category))
-    todolist[category][todoid] = [todoname, False]
+
+    if category not in todolist.keys():
+        for cat in todolist.keys():
+            if category.lower() == cat.lower():
+                todolist[cat][todoid] = [todoname, False]
+    else:
+        todolist[category][todoid] = [todoname, False]
     todoid += 1
     return todolist, True, todoid
 
