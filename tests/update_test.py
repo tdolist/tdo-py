@@ -19,5 +19,6 @@ class UpdateTest(unittest.TestCase):
                 subprocess.call(['tdo'])
             except Exception as err:
                 fail = True
+                print(err)
 
             self.assertIs(fail, False, msg='The updater is broken!')
