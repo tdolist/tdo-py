@@ -54,9 +54,12 @@ def main(argv=sys.argv):
         if len(argv) < 3:
             print('Please enter a task ID!')
         else:
-            ret_val = todolist.done(todos, argv[2])
+            changed = False
+            for element in argv[2:]:
+                ret_val = todolist.done(todos, element)
+                changed = changed or ret_val[1]
 
-            if ret_val[1]:
+            if changed:
                 # if there were changes, save them
                 todolist.save(ret_val[0])
     elif argv[1] == 'edit':
