@@ -98,7 +98,8 @@ def addlist(todolist, new_category):
     Returns:
         the (updated) todolist dict, False for no changes/True for changes
     '''
-    if new_category in todolist.keys():
+    lowerkeys = [key.lower() for key in todolist.keys()]
+    if new_category.lower() in lowerkeys:
         print('This list already exists!')
         return todolist, False
     else:
