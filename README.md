@@ -3,7 +3,7 @@
             )](http://mit-license.org)
 [![Language](https://img.shields.io/badge/language-Python%203.5%2B-blue.svg
             )](https://www.python.org)
-[![Release](https://img.shields.io/badge/release-v1.0-brightgreen.svg
+[![Release](https://img.shields.io/badge/release-v1.1-brightgreen.svg
             )](https://github.com/tdolist/tdo/releases/latest)
 [![Build Status](https://travis-ci.org/tdolist/tdo.svg?branch=master
             )](https://travis-ci.org/tdolist/tdo)
