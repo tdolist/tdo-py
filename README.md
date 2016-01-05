@@ -1,6 +1,11 @@
 # tdo
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat
+            )](http://mit-license.org)
+[![Language](https://img.shields.io/badge/language-Python%203.5%2B-blue.svg
+            )](https://www.python.org)
+[![Build Status](https://travis-ci.org/tdolist/tdo.svg?branch=master
+            )](https://travis-ci.org/tdolist/tdo)
 
-[![Build Status](https://travis-ci.org/tdolist/tdo.svg?branch=master)](https://travis-ci.org/tdolist/tdo)
 
 A todo list tool for the terminal, written in Python
 
