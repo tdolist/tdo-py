@@ -117,8 +117,6 @@ def main(argv=sys.argv):
     elif argv[1] == 'help':
         # tdo help -- display help
         displayhelp()
-    elif argv[1] == 'update':
-        todolist.update()
     elif argv[1] == 'themes':
         todolist.listthemes()
     elif argv[1] == 'settheme':

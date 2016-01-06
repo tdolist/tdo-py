@@ -31,34 +31,3 @@ def reset():
         print('Okay, let\'s keep your lists for a while.')
     else:
         print('Please write "yes" or "no".')
-
-
-def update():
-    os.chdir(os.path.join(home + '/.tdo'))
-    user = 'tdolist'
-    repo = 'tdo'
-    output = subprocess.getoutput('curl -s https://api.github.com/repos/\
-{user}/{repo}/releases'.format(user=user, repo=repo))
-    linklist = re.search(r'"zipball_url": "(https\:\/\/.*)"',
-                         output)
-    try:
-        link = linklist.group(1)
-        with urllib.request.urlopen(link) as resp, open('dl.zip', 'wb') as f:
-            data = resp.read()
-            f.write(data)
-        import zipfile
-        with zipfile.ZipFile('dl.zip', "r") as z:
-            z.extractall(".")
-        os.remove('dl.zip')
-        newdir = None
-        for entry in os.listdir():
-            if re.match(r'{user}\-tdo\-.*'.format(user=user), entry):
-                newdir = entry
-        os.chdir(newdir)
-        subprocess.call(['python3', './setup.py', 'install'])
-        os.chdir('..')
-        if newdir is not None:
-            shutil.rmtree(newdir)
-
-    except AttributeError:
-        print('No release available')

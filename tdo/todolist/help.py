@@ -13,7 +13,6 @@ tdo clean [list]        Removes all tasks that have been marked as done.
 tdo lists               List all lists with a statistic of undone/done tasks.
 tdo help                Display this help.
 tdo reset               DANGER ZONE. Delete all your todos and todo lists.
-tdo update              Updates tdo to the latest release.
 tdo themes              Shows all available themes.
 tdo settheme id         Set the theme to <id>
 tdo export filename     Export all your todos to Markdown.'''
