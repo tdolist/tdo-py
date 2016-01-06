@@ -20,7 +20,7 @@ A todo list tool for the terminal, written in Python
 
 **via pip:**  
 ```
-pip install tdo
+pip3 install tdo
 ```
 
 **manual:**   
