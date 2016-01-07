@@ -36,12 +36,14 @@ pip3 uninstall tdo
 
 ## Usage
 
+__Notice:__ If you have todos or listnames with spaces do not forget to escape them or put the whole string in `''`
+
 For a list of all available commands please see `tdo help`, this is just an overview to demonstrate what you can do with tdo.
 
 ### Simple todos
-To add a todo, simply type `tdo add 'todoname goes here'`. If your todo consists of just one word, you can leave out the quotes.
+To add a todo, simply type `tdo add 'todo goes here'`. If your todo consists of just one word, you can leave out the quotes.
 
-However, if you want to add the todo to a list _(for lists, see below)_, type `tdo add todoname listname`. Note that you can type the listname in lowercase letters, tdo will still find your list.
+However, if you want to add the todo to a list _(for lists, see below)_, type `tdo add 'todo' listname`. Note that you can type the listname in lowercase letters, tdo will still find your list.
 
 ### Multiple Lists
 tdo features working with multiple lists. Add a new list with `tdo newlist listname` (remember to use quotation marks for a listname containing spaces!).
