@@ -34,6 +34,29 @@ However, to __uninstall__ it you will still need pip and have to run
 pip3 uninstall tdo
 ```
 
+## Usage
+
+For a list of all available commands please see `tdo help`, this is just an overview to demonstrate what you can do with tdo.
+
+### Simple todos
+To add a todo, simply type `tdo add 'todoname goes here'`. If your todo consists of just one word, you can leave out the quotes.
+
+However, if you want to add the todo to a list _(for lists, see below)_, type `tdo add todoname listname`. Note that you can type the listname in lowercase letters, tdo will still find your list.
+
+### Multiple Lists
+tdo features working with multiple lists. Add a new list with `tdo newlist listname` (remember to use quotation marks for a listname containing spaces!).
+
+To remove it again, use `tdo remove listname`. You will be prompted to confirm the deletion to avoid accidents.
+
+### Theming
+tdo features a set of four different themes, where two are based on a table-like structure and the other two are more plain-structured.
+You can preview all available themes using `tdo themes` but you shouldn't expect too much, it's still the terminal. Simple is cool here.  
+
+If you feel like changing your theme, you can do that with `tdo settheme <Theme ID goes here>`.
+
+### Export your todos
+If you feel like exporting your todos _(e.g. for printing a checklist)_, you can do that with `tdo export filename`. All your todo lists will be exported, including tasks that were marked as 'done'.
+
 ## License
 
 This work is published under the [MIT License](LICENSE.txt).
