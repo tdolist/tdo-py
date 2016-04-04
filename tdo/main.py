@@ -39,18 +39,19 @@ def main(argv=sys.argv):
         if len(argv) < 3:
             displayhelp()
         # tdo add "itemname" [list]-- add a new item
-        elif len(argv) < 4:
-            # add to default list
-            ret_val = todolist.add(todos, globalid, argv[2])
         else:
-            # add to defined list
-            ret_val = todolist.add(todos, globalid, argv[2], argv[3])
+            if len(argv) < 4:
+                # add to default list
+                ret_val = todolist.add(todos, globalid, argv[2])
+            else:
+                # add to defined list
+                ret_val = todolist.add(todos, globalid, argv[2], argv[3])
 
-        if ret_val[1]:
-            # if there were changes, save them
-            todolist.save(ret_val[0])
-            settings['globalid'] = ret_val[2]
-            todolist.savesettings(settings)
+            if ret_val[1]:
+                # if there were changes, save them
+                todolist.save(ret_val[0])
+                settings['globalid'] = ret_val[2]
+                todolist.savesettings(settings)
     elif argv[1] == 'done':
         # tdo done x -- mark task no. x as done
         if len(argv) < 3:
