@@ -9,7 +9,7 @@ if version < (3, 4):
           ' ({}.{} detected).'.format(*version))
     sys.exit(-1)
 
-VERSION = '1.1.1'
+VERSION = '1.1.2'
 
 
 setup(name='tdo',
