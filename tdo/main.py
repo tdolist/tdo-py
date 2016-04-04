@@ -36,8 +36,10 @@ def main(argv=sys.argv):
         # tdo all -- list ALL todos
         todolist.listall(todos, len(str(globalid - 1)), settings)
     elif argv[1] == 'add':
+        if len(argv) < 3:
+            displayhelp()
         # tdo add "itemname" [list]-- add a new item
-        if len(argv) < 4:
+        elif len(argv) < 4:
             # add to default list
             ret_val = todolist.add(todos, globalid, argv[2])
         else:
